@@ -1,5 +1,6 @@
 from sklearn.linear_model import LogisticRegression
 from sklearn.model_selection import train_test_split
+import pickle
 
 CLASS_TRAIN = 1
 GENDER_TRAIN = 4
@@ -43,6 +44,6 @@ def train_model(features, labels):
 
 features_train, labels_train = process_file(TRAIN_CELLS_LABELLED, [CLASS_TRAIN, GENDER_TRAIN, AGE_TRAIN])
 model = train_model(features_train, labels_train)
-# {class, sex, age}
+# {class, sex, age} for predict
 print(model.predict([[3, 0, 28.0]]))
-
+pickle.dump(model, open("./out/pickled_model.p", "wb"))
