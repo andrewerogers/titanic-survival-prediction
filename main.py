@@ -36,10 +36,6 @@ def train_model(features, labels):
     x_train, x_test, y_train, y_test = train_test_split(features, labels,
                                                         test_size=0.1)
     clf = LogisticRegression(random_state=0).fit(x_train, y_train)
-
-    # todo: get confusion matrix and look at specificity, sensitivity, precision, f1_score,
-    # to interpret the model better
-    # cross-validation metrics
     acc = clf.score(x_test, y_test)
     print(f"mean-accuracy: {acc * 100}%")
     return clf
@@ -47,3 +43,6 @@ def train_model(features, labels):
 
 features_train, labels_train = process_file(TRAIN_CELLS_LABELLED, [CLASS_TRAIN, GENDER_TRAIN, AGE_TRAIN])
 model = train_model(features_train, labels_train)
+# {class, sex, age}
+print(model.predict([[3, 0, 28.0]]))
+
